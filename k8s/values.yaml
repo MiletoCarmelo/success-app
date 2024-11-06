@@ -1,9 +1,0 @@
-# k8s/values.yaml
-image:
-  repository: your-registry/success-app
-  tag: latest
-  pullPolicy: Always
-
-service:
-  type: ClusterIP
-  port: 80

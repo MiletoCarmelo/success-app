@@ -1,0 +1,5 @@
+# k8s/values.yaml
+environment: prod
+service:
+  type: ClusterIP
+  port: 80
