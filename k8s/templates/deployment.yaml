@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "success-app.name" . }}-deployment
+  labels:
+    {{- include "success-app.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "success-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "success-app.selectorLabels" . | nindent 8 }}
