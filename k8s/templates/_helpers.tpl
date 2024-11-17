@@ -17,7 +17,7 @@ app: {{ include "success-app.name" . }}
 Selector labels
 */}}
 {{- define "success-app.selectorLabels" -}}
-app: {{ include "success-app.name" . }}
+app: {{ include "success-app.name" . }}-{{ .Values.environment }}
 {{- end }}
 
 {{/*
