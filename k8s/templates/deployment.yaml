@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "success-app.name" . }}-deployment
+  name: {{ include "success-app.name" . }}-{{ .Values.environment }}-deployment
   labels:
     {{- include "success-app.labels" . | nindent 4 }}
 spec:
