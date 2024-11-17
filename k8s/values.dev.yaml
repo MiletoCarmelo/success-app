@@ -1,5 +1,6 @@
 # k8s/values.yaml
 environment: dev
+module: success-app
 service:
   type: ClusterIP
   port: 80
