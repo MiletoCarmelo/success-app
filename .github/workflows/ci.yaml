@@ -1,5 +1,4 @@
 name: Build and Push Docker Image
-
 on:
   push:
     branches:
@@ -9,12 +8,12 @@ env:
   REGISTRY_NAME: ghcr.io
   REGISTRY_USERNAME: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-  IMAGE_NAME: ${{ github.repository }}  # This will be in the format "owner/repo"
+  IMAGE_NAME: ${{ github.repository }} # This will be in the format "owner/repo"
   IMAGE_TAG: latest
 
 permissions:
-  contents: read  # Allows reading files from the repository
-  packages: write  # Allows pushing images to the GitHub Container Registry
+  contents: read # Allows reading files from the repository
+  packages: write # Allows pushing images to the GitHub Container Registry
 
 jobs:
   build:
@@ -26,6 +25,9 @@ jobs:
       - name: Set lowercase IMAGE_NAME
         id: set_image_name
         run: echo "IMAGE_NAME_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -41,5 +43,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./app/
+          platforms: linux/amd64,linux/arm64  # Ajout du support multi-arch
           push: true
           tags: ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}:${{ env.IMAGE_TAG }}
