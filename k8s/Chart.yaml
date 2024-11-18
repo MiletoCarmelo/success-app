@@ -1,5 +1,5 @@
-# k8s/Chart.yaml
 apiVersion: v2
 name: success-app
 description: A simple success message application
 version: 0.1.0
+appVersion: "0.1.0"  # Ajoutez cette ligne
