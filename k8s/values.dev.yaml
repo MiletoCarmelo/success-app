@@ -2,7 +2,7 @@
 environment: dev
 module: success-app
 service:
-  type: ClusterIP
+  type: NodePort # ClusterIP
   port: 80
   targetPort: 80
 image:
